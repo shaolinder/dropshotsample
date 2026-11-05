@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PageHero, useTitle } from "../components/Shell";
-import { brand, branches, telHref } from "../data";
+import { brand, branches, pagePhotos, telHref } from "../data";
 
 export default function Contact() {
   useTitle("Contact Us");
@@ -21,10 +21,14 @@ export default function Contact() {
         kicker="Contact"
         title="Call a shop, or write the station"
         text="Branch phones are the fastest way to ask if a load can be ready today."
+        image={pagePhotos.contact}
       />
       <section className="section">
         <div className="wrap split">
           <div>
+            <figure className="side-photo">
+              <img src={pagePhotos.services} alt="" />
+            </figure>
             <p>
               <a href={`mailto:${brand.email}`}>{brand.email}</a>
             </p>

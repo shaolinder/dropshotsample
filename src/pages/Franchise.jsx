@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PageHero, useTitle } from "../components/Shell";
-import { brand } from "../data";
+import { brand, pagePhotos } from "../data";
 
 export default function Franchise() {
   useTitle("Franchise");
@@ -22,10 +22,14 @@ export default function Franchise() {
         kicker={brand.parent}
         title="A laundry shop you can open"
         text="Dropshot Ventures Corp. is the holding company. The franchise is the shop, the brand, and the operating manual."
+        image={pagePhotos.franchise}
       />
       <section className="section">
         <div className="wrap split">
           <div className="prose">
+            <figure className="side-photo">
+              <img src={pagePhotos.fullService} alt="" />
+            </figure>
             <h2>What the package is for</h2>
             <p>
               The offer is a laundry shop in Cebu that can take self-service customers and staffed wash-and-fold, plus pick-up where the area supports it. You operate under the Dropshot name.

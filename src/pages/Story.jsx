@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHero, useTitle } from "../components/Shell";
-import { brand } from "../data";
+import { brand, gallery, pagePhotos } from "../data";
 
 const steps = [
   {
@@ -33,19 +33,27 @@ export default function Story() {
         kicker={`Since ${brand.founded}`}
         title="Built because laundry had to get easier"
         text="A subsidiary of Dropshot Ventures Corp., still running the shops it opened in Cebu."
+        image={pagePhotos.story}
       />
       <section className="section">
-        <div className="wrap timeline">
-          {steps.map((step) => (
-            <article key={step.title}>
-              <p className="kicker">{step.year}</p>
-              <h2>{step.title}</h2>
-              <p>{step.text}</p>
-            </article>
-          ))}
-          <Link className="btn btn-solid" to="/franchise">
-            See the franchise
-          </Link>
+        <div className="wrap story-layout">
+          <div className="story-photos">
+            {gallery.slice(0, 3).map((src) => (
+              <img key={src} src={src} alt="" />
+            ))}
+          </div>
+          <div className="timeline">
+            {steps.map((step) => (
+              <article key={step.title}>
+                <p className="kicker">{step.year}</p>
+                <h2>{step.title}</h2>
+                <p>{step.text}</p>
+              </article>
+            ))}
+            <Link className="btn btn-solid" to="/franchise">
+              See the franchise
+            </Link>
+          </div>
         </div>
       </section>
     </>

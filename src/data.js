@@ -42,6 +42,34 @@ export const areas = [
 const img = (id, w = 1400) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
+/** Same laundry photos used on the homepage and the inner pages. */
+export const servicePhotos = {
+  "personal-laundry": img("photo-1610557892470-55d9e80c0bce", 1200),
+  "dry-cleaning": img("photo-1489274495757-95c7c837b101", 1200),
+  "shoes-and-bags": img("photo-1549298916-b41d501d3772", 1200),
+  "commercial-laundry": img("photo-1582735689369-4fe89db7114c", 1200),
+  "hand-washing": img("photo-1604335399105-a0c585fd81a1", 1200),
+  "pickup-delivery": img("photo-1617347454431-f49d7ff5c3b1", 1200),
+  "self-service": img("photo-1626806787461-102c1bfaaea1", 1200),
+  express: img("photo-1517677208171-0bc6725a3e60", 1200),
+  "open-daily": img("photo-1556905055-8f358a7a47b2", 1200),
+};
+
+export const pagePhotos = {
+  pickup: img("photo-1617347454431-f49d7ff5c3b1", 1800),
+  services: img("photo-1556905055-8f358a7a47b2", 1800),
+  story: img("photo-1545173168-9f1947eebb7f", 1800),
+  who: img("photo-1626806787461-102c1bfaaea1", 1800),
+  franchise: img("photo-1582735689369-4fe89db7114c", 1800),
+  locations: img("photo-1545173168-9f1947eebb7f", 1800),
+  contact: img("photo-1610557892470-55d9e80c0bce", 1800),
+  careers: img("photo-1545173168-9f1947eebb7f", 1800),
+  faq: img("photo-1489274495757-95c7c837b101", 1800),
+  reviews: img("photo-1604335399105-a0c585fd81a1", 1800),
+  fullService: img("photo-1517677208171-0bc6725a3e60", 1400),
+  selfService: img("photo-1626806787461-102c1bfaaea1", 1400),
+};
+
 export const slides = [
   {
     image: img("photo-1517677208171-0bc6725a3e60"),
@@ -146,6 +174,7 @@ export const branches = [
     short: "Cabancalan Mandaue",
     city: "Mandaue City",
     kind: "Full service",
+    image: img("photo-1517677208171-0bc6725a3e60", 1200),
     tagline: "Full-service laundry on Quezon Avenue, with a self-service area now open.",
     address: "787 ML Quezon Avenue, Cabancalan, Mandaue City, Cebu",
     phones: ["0955 540 9958", "0928 829 9957", "0968 899 0228"],
@@ -156,6 +185,7 @@ export const branches = [
     short: "Cabancalan Self Service",
     city: "Mandaue City",
     kind: "Self-service",
+    image: img("photo-1626806787461-102c1bfaaea1", 1200),
     tagline: "Washers and dryers you run yourself, inside the Cabancalan shop.",
     address: "787 ML Quezon Avenue, Cabancalan, Mandaue City, Cebu",
     phones: ["0955 540 9958", "0928 829 9957", "0968 899 0228"],
@@ -166,6 +196,7 @@ export const branches = [
     short: "Banilad Mandaue",
     city: "Mandaue City",
     kind: "Full service",
+    image: img("photo-1610557892470-55d9e80c0bce", 1200),
     tagline: "Staff wash, fold, and finish on A.S. Fortuna.",
     address: "Unit 1, 880 A.S. Fortuna Street, Banilad, Mandaue City, Cebu",
     phones: ["0919 330 9275", "0975 507 2665", "0968 899 0228"],
@@ -176,6 +207,7 @@ export const branches = [
     short: "Banilad Self Service",
     city: "Mandaue City",
     kind: "Self-service",
+    image: img("photo-1545173168-9f1947eebb7f", 1200),
     tagline: "Self-service machines in the unit beside the Banilad counter.",
     address: "Unit 2, 880 A.S. Fortuna Street, Banilad, Mandaue City, Cebu",
     phones: ["0919 330 9275", "0975 507 2665", "0968 899 0228"],
@@ -186,6 +218,7 @@ export const branches = [
     short: "Lahug Salinas Drive Cebu",
     city: "Cebu City",
     kind: "Full service",
+    image: img("photo-1489274495757-95c7c837b101", 1200),
     tagline: "Ground-floor shop on Salinas Drive, easy for pick-up and drop-off.",
     address: "GF ABC Plus Hotel & Homes, 35 Salinas Drive, Lahug, Cebu City",
     phones: ["0919 671 4248", "0969 092 8743"],
@@ -196,6 +229,7 @@ export const branches = [
     short: "Maguikay Mandaue",
     city: "Mandaue City",
     kind: "Full service",
+    image: img("photo-1582735689369-4fe89db7114c", 1200),
     tagline: "Full-service laundry along Quezon Avenue in Maguikay.",
     address: "728 ML Quezon Avenue, Maguikay, Mandaue City, Cebu",
     phones: ["0953 682 9085", "0962 303 0494", "0968 899 0228"],
@@ -206,6 +240,7 @@ export const branches = [
     short: "SM Seaside Cebu",
     city: "Cebu City",
     kind: "Full service",
+    image: img("photo-1556905055-8f358a7a47b2", 1200),
     tagline: "Inside the mall, built for people who want pick-up and delivery nearby.",
     address:
       "Lower Ground Floor, Mountain Wing Arcade, SM Seaside City, South Coastal Road, Antuwanga, Cebu City",

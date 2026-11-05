@@ -1,5 +1,5 @@
 import { PageHero, useTitle } from "../components/Shell";
-import { brand, branches } from "../data";
+import { brand, branches, gallery, pagePhotos } from "../data";
 
 export default function Reviews() {
   useTitle("Reviews");
@@ -11,9 +11,16 @@ export default function Reviews() {
         kicker="Reviews"
         title="Read the shops where customers already wrote"
         text="This page does not invent quotes. Reviews live on the Facebook page and on each branch’s own calls and visits."
+        image={pagePhotos.reviews}
       />
       <section className="section">
-        <div className="wrap prose">
+        <div className="wrap">
+          <div className="gallery">
+            {gallery.map((src) => (
+              <img key={src} src={src} alt="" />
+            ))}
+          </div>
+          <div className="prose">
           <p>
             <a className="btn btn-solid" href={facebook} target="_blank" rel="noreferrer">
               Open Facebook
@@ -33,6 +40,7 @@ export default function Reviews() {
               @dropshotlaundrystation
             </a>
           </p>
+          </div>
         </div>
       </section>
     </>

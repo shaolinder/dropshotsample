@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { PageHero, useTitle } from "../components/Shell";
-import { findBranch, mapsHref, telHref } from "../data";
+import { findBranch, mapsHref, pagePhotos, telHref } from "../data";
 
 export default function Branch() {
   const { slug } = useParams();
@@ -22,10 +22,19 @@ export default function Branch() {
 
   return (
     <>
-      <PageHero kicker={branch.city} title={branch.name} text={branch.tagline} />
+      <PageHero
+        kicker={branch.city}
+        title={branch.name}
+        text={branch.tagline}
+        image={self ? pagePhotos.selfService : branch.image}
+      />
       <section className="section">
         <div className="wrap split">
           <div className="prose">
+            <figure className="side-photo">
+              <img src={branch.image} alt="" />
+            </figure>
+            <p className="note">Photo shows the kind of work, not this shopfront.</p>
             <p className="kind">{branch.kind}</p>
             <h2>Address</h2>
             <p>{branch.address}</p>

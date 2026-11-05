@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PageHero, useTitle } from "../components/Shell";
-import { branches, brand } from "../data";
+import { branches, brand, pagePhotos } from "../data";
 
 export default function Careers() {
   useTitle("Careers");
@@ -21,10 +21,14 @@ export default function Careers() {
         kicker="Careers"
         title="Work a counter, a machine, or a route"
         text="Attendants, riders, and supervisors. Send your details and the branch you can reach."
+        image={pagePhotos.careers}
       />
       <section className="section">
         <div className="wrap split">
           <div className="prose">
+            <figure className="side-photo">
+              <img src={pagePhotos.fullService} alt="" />
+            </figure>
             <p>
               Shops hire for the floor and for pick-up. There is no public job board on this site — email {brand.email} with the branch you want and the work you can do.
             </p>

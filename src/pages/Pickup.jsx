@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PageHero, useTitle } from "../components/Shell";
-import { areas, brand, slides } from "../data";
+import { areas, brand, pagePhotos, servicePhotos } from "../data";
 
 const empty = {
   name: "",
@@ -49,11 +49,14 @@ export default function Pickup() {
         kicker="Metro Cebu"
         title="Pick-up & delivery"
         text="We collect the bag, wash it, and bring it back to the same address."
-        image={slides[3].image}
+        image={pagePhotos.pickup}
       />
       <section className="section">
         <div className="wrap split">
           <div>
+            <figure className="side-photo">
+              <img src={servicePhotos["personal-laundry"]} alt="" />
+            </figure>
             <h2>What’s in a load</h2>
             <ul className="ticks">
               <li>Pick-up from your address</li>

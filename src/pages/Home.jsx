@@ -2,28 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
 import { useTitle } from "../components/Shell";
-import { brand, branches, clients, gallery, services, telHref } from "../data";
-
-const servicePhotos = {
-  "personal-laundry":
-    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=900&q=80",
-  "dry-cleaning":
-    "https://images.unsplash.com/photo-1489274495757-95c7c837b101?auto=format&fit=crop&w=900&q=80",
-  "shoes-and-bags":
-    "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=80",
-  "commercial-laundry":
-    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=900&q=80",
-  "hand-washing":
-    "https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=900&q=80",
-  "pickup-delivery":
-    "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=900&q=80",
-  "self-service":
-    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=900&q=80",
-  express:
-    "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=900&q=80",
-  "open-daily":
-    "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=900&q=80",
-};
+import { brand, branches, clients, gallery, servicePhotos, services, telHref } from "../data";
 
 export default function Home() {
   useTitle("");
@@ -32,19 +11,13 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <div className="ticker">
-        <div className="ticker-track">
-          {[0, 1].map((copy) => (
-            <div className="ticker-group" key={copy} aria-hidden={copy === 1}>
-              {brand.socials.map((social) => (
-                <a key={`${copy}-${social.name}`} href={social.href} target="_blank" rel="noreferrer">
-                  {social.name}
-                </a>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+      <nav className="ticker" aria-label="Social media">
+        {brand.socials.map((social) => (
+          <a key={social.name} href={social.href} target="_blank" rel="noreferrer">
+            {social.name}
+          </a>
+        ))}
+      </nav>
 
       <section className="section">
         <div className="wrap">
@@ -86,6 +59,7 @@ export default function Home() {
           <div className="branch-grid">
             {branches.map((branch) => (
               <article key={branch.slug} className="branch-card">
+                <img className="branch-shot" src={branch.image} alt="" />
                 <p className="kind">{branch.kind}</p>
                 <h3>✦ {branch.name} ✦</h3>
                 <p>{branch.tagline}</p>

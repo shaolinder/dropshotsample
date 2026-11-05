@@ -27,7 +27,9 @@ export default function Shell() {
   useEffect(() => {
     const seen = sessionStorage.getItem("dropshot-franchise");
     if (!seen) setFranchiseOpen(true);
-    setCookies(localStorage.getItem("dropshot-cookies") === "ok");
+    const saved = localStorage.getItem("dropshot-cookies");
+    const ignored = sessionStorage.getItem("dropshot-cookies-dismissed");
+    setCookies(Boolean(saved || ignored));
   }, []);
 
   useEffect(() => {
@@ -42,8 +44,13 @@ export default function Shell() {
     setFranchiseOpen(false);
   };
 
-  const acceptCookies = () => {
-    localStorage.setItem("dropshot-cookies", "ok");
+  const chooseCookies = (value) => {
+    localStorage.setItem("dropshot-cookies", value);
+    setCookies(true);
+  };
+
+  const dismissCookies = () => {
+    sessionStorage.setItem("dropshot-cookies-dismissed", "1");
     setCookies(true);
   };
 
@@ -219,11 +226,19 @@ export default function Shell() {
 
       {!cookies && (
         <aside className="cookie">
-          <h2>This website uses cookies.</h2>
-          <p>We use them to understand traffic and keep the site usable. Accept to continue.</p>
-          <button className="btn btn-solid" type="button" onClick={acceptCookies}>
-            Accept
+          <button className="cookie-x" type="button" aria-label="Close" onClick={dismissCookies}>
+            ×
           </button>
+          <h2>This website uses cookies.</h2>
+          <p>We use them to understand traffic and keep the site usable.</p>
+          <div className="cookie-actions">
+            <button className="btn btn-line" type="button" onClick={() => chooseCookies("no")}>
+              Decline
+            </button>
+            <button className="btn btn-solid" type="button" onClick={() => chooseCookies("ok")}>
+              Accept
+            </button>
+          </div>
         </aside>
       )}
     </>
@@ -244,7 +259,8 @@ function Drop({ label, open, onToggle, children }) {
 
 export function PageHero({ kicker, title, text, image }) {
   return (
-    <section className="page-hero" style={image ? { backgroundImage: `url(${image})` } : undefined}>
+    <section className="page-hero">
+      {image && <img className="page-hero-photo" src={image} alt="" />}
       <div className="page-hero-shade" />
       <div className="wrap">
         {kicker && <p className="kicker light">{kicker}</p>}

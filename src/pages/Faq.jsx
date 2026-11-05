@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PageHero, useTitle } from "../components/Shell";
-import { brand, faqs } from "../data";
+import { brand, faqs, pagePhotos } from "../data";
 
 export default function Faq() {
   useTitle("FAQ's");
@@ -12,9 +12,14 @@ export default function Faq() {
         kicker="FAQ"
         title="Questions the counter hears all week"
         text={`If yours is not here, email ${brand.email} or message the Facebook page.`}
+        image={pagePhotos.faq}
       />
       <section className="section">
-        <div className="wrap faq-list">
+        <div className="wrap split">
+          <figure className="side-photo">
+            <img src={pagePhotos.services} alt="" />
+          </figure>
+          <div className="faq-list">
           {faqs.map((item, index) => {
             const expanded = open === index;
             return (
@@ -31,6 +36,7 @@ export default function Faq() {
               </div>
             );
           })}
+          </div>
         </div>
       </section>
     </>
