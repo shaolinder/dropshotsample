@@ -1,6 +1,25 @@
 import { useState } from "react";
 import { PageHero, useTitle } from "../components/Shell";
-import { areas, brand, pagePhotos, servicePhotos } from "../data";
+import { areas, brand } from "../data";
+
+const examples = [
+  "Separate the whites",
+  "Hand-wash the delicates",
+  "Add Perla for the whites",
+  "Add extra fabric conditioner",
+  "Add Bounce",
+];
+
+const videos = [
+  {
+    src: "https://player.vimeo.com/video/774249920?h=8e1fc1046c&title=0&byline=0&portrait=0",
+    title: "Pick-up and delivery video",
+  },
+  {
+    src: "https://player.vimeo.com/video/774257263?h=4e7bc1c474&title=0&byline=0&portrait=0",
+    title: "Pick-up and delivery video 2",
+  },
+];
 
 const empty = {
   name: "",
@@ -49,18 +68,16 @@ export default function Pickup() {
         kicker="Metro Cebu"
         title="Pick-up & delivery"
         text="We collect the bag, wash it, and bring it back to the same address."
-        image={pagePhotos.pickup}
+        image="/pickup/hero.jpg"
       />
       <section className="section">
         <div className="wrap split">
           <div>
-            <figure className="side-photo">
-              <img src={servicePhotos["personal-laundry"]} alt="" />
-            </figure>
             <h2>What’s in a load</h2>
             <ul className="ticks">
               <li>Pick-up from your address</li>
-              <li>One wash and one dry, up to 8 kilos</li>
+              <li>One wash and one dry</li>
+              <li>8 kilos maximum</li>
               <li>Folded, then delivered</li>
               <li>No minimum order</li>
             </ul>
@@ -75,6 +92,12 @@ export default function Pickup() {
               <li>Cash to the pick-up agent when the bag is collected</li>
               <li>GCash before delivery</li>
               <li>Maya before delivery</li>
+            </ul>
+            <h2>Special instructions, for example</h2>
+            <ul className="ticks">
+              {examples.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
             </ul>
           </div>
           <form className="panel" onSubmit={copy}>
@@ -135,12 +158,18 @@ export default function Pickup() {
         </div>
       </section>
       <section className="section alt">
-        <div className="wrap rules">
+        <div className="wrap">
+          <figure className="pickup-photo">
+            <img src="/pickup/delivery.jpg" alt="A rider holding a laundry bag at the shop door." />
+          </figure>
+          <div className="rules">
           <article>
             <h2>Delivery</h2>
             <ul className="ticks">
               <li>Deliveries run from 8 AM to 6 PM.</li>
-              <li>If someone else will receive it, send their full name ahead. The rider photographs the handover.</li>
+              <li>
+                If someone else will receive it, send their complete name on Messenger. The rider photographs their ID.
+              </li>
               <li>A timed delivery is possible if you message ahead and a rider is free.</li>
               <li>We deliver only to the original pick-up address.</li>
             </ul>
@@ -156,11 +185,29 @@ export default function Pickup() {
           <article>
             <h2>Before you pack</h2>
             <ul className="ticks">
-              <li>Leave valuables and irreplaceable branded pieces out. The shop is not responsible for them.</li>
+              <li>Leave valuables and branded pieces out. The shop is not responsible for them.</li>
               <li>8 kilos is one load. Heavier bags start a second load.</li>
-              <li>Say if whites, delicates, or extra conditioner should be separate.</li>
             </ul>
           </article>
+          </div>
+        </div>
+      </section>
+      <section className="section">
+        <div className="wrap">
+          <p className="kicker">Delivery videos</p>
+          <h2 className="section-title">See a pick-up</h2>
+          <div className="video-row">
+            {videos.map((video) => (
+              <div key={video.src} className="video-frame">
+                <iframe
+                  src={video.src}
+                  title={video.title}
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

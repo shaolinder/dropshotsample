@@ -1,45 +1,71 @@
 import { PageHero, useTitle } from "../components/Shell";
-import { brand, branches, gallery, pagePhotos } from "../data";
+import { reviews } from "../data";
 
 export default function Reviews() {
   useTitle("Reviews");
-  const facebook = brand.socials[0].href;
 
   return (
     <>
       <PageHero
         kicker="Reviews"
-        title="Read the shops where customers already wrote"
-        text="This page does not invent quotes. Reviews live on the Facebook page and on each branch’s own calls and visits."
-        image={pagePhotos.reviews}
+        title="Google reviews"
+        text={`${reviews.place}. ${reviews.rating} from ${reviews.count} reviews.`}
+        image="/reviews/hero.jpg"
       />
       <section className="section">
         <div className="wrap">
-          <div className="gallery">
-            {gallery.map((src) => (
-              <img key={src} src={src} alt="" />
+          <p className="score">
+            <strong>{reviews.rating}</strong>
+            <span>
+              {reviews.count} Google reviews
+              <br />
+              {reviews.place}
+            </span>
+          </p>
+          <div className="review-grid">
+            {reviews.items.map((item) => (
+              <article key={`${item.name}-${item.date}`} className="review-card">
+                <p>“{item.text}”</p>
+                <footer>
+                  {item.name} · {item.date}
+                  {item.more && (
+                    <>
+                      {" "}
+                      ·{" "}
+                      <a href={reviews.href} target="_blank" rel="noreferrer">
+                        Read the full review
+                      </a>
+                    </>
+                  )}
+                </footer>
+              </article>
             ))}
           </div>
-          <div className="prose">
-          <p>
-            <a className="btn btn-solid" href={facebook} target="_blank" rel="noreferrer">
-              Open Facebook
+          <p className="review-more">
+            <a className="btn btn-solid" href={reviews.href} target="_blank" rel="noreferrer">
+              View all {reviews.count} reviews
             </a>
           </p>
-          <h2>Which shop to name</h2>
-          <ul>
-            {branches.map((branch) => (
-              <li key={branch.slug}>
-                {branch.name} — {branch.city}
-              </li>
-            ))}
-          </ul>
-          <p>
-            Instagram:{" "}
-            <a href={brand.socials[1].href} target="_blank" rel="noreferrer">
-              @dropshotlaundrystation
-            </a>
-          </p>
+        </div>
+      </section>
+      <section className="section alt">
+        <div className="wrap">
+          <div className="review-marquee" role="region" aria-label={reviews.note}>
+            <div className="review-marquee-track" aria-hidden="true">
+              {Array.from({ length: 8 }, (_, index) => (
+                <span key={index}>{reviews.note}</span>
+              ))}
+            </div>
+          </div>
+          <p className="kicker">Video</p>
+          <h2 className="section-title">Check out this great video</h2>
+          <div className="video-frame">
+            <iframe
+              src={reviews.video}
+              title="Dropshot Laundry video"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
