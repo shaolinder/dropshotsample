@@ -1,17 +1,9 @@
-import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { PageHero, useTitle } from "../components/Shell";
-import { pagePhotos, servicePhotos, services } from "../data";
+import { pagePhotos, servicePhotoPosition, servicePhotos, services } from "../data";
 
 export default function Services() {
-  const { slug } = useParams();
   useTitle("Services");
-
-  useEffect(() => {
-    if (!slug) return;
-    const node = document.getElementById(slug);
-    if (node) node.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [slug]);
 
   return (
     <>
@@ -23,10 +15,14 @@ export default function Services() {
       />
       <section className="section">
         <div className="wrap service-list">
-          <p className="note page-photo-note">Photos show the kind of work. They are not pictures of a specific branch.</p>
+          <p className="note page-photo-note">Photos show the kind of work.</p>
           {services.map((service) => (
             <article key={service.slug} id={service.slug} className="service-row">
-              <img src={servicePhotos[service.slug]} alt="" />
+              <img
+                src={servicePhotos[service.slug]}
+                alt=""
+                style={{ objectPosition: servicePhotoPosition[service.slug] || "center" }}
+              />
               <div>
                 <h2>{service.name}</h2>
                 <p>{service.body}</p>

@@ -27,7 +27,7 @@ export default function Hero() {
         <div
           key={item.title}
           className={`hero-slide ${i === index ? "is-active" : ""}`}
-          style={{ backgroundImage: `url(${item.image})` }}
+          style={{ backgroundImage: `url(${item.image})`, backgroundPosition: item.position || "center" }}
           aria-hidden={i !== index}
         />
       ))}

@@ -51,17 +51,33 @@ export const areas = [
 const img = (id, w = 1400) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
-/** Same laundry photos used on the homepage and the inner pages. */
+/** Photos for the nine service cards and the matching Services page rows. */
 export const servicePhotos = {
-  "personal-laundry": img("photo-1610557892470-55d9e80c0bce", 1200),
-  "dry-cleaning": img("photo-1489274495757-95c7c837b101", 1200),
-  "shoes-and-bags": img("photo-1549298916-b41d501d3772", 1200),
-  "commercial-laundry": img("photo-1582735689369-4fe89db7114c", 1200),
-  "hand-washing": img("photo-1604335399105-a0c585fd81a1", 1200),
-  "pickup-delivery": img("photo-1617347454431-f49d7ff5c3b1", 1200),
-  "self-service": img("photo-1626806787461-102c1bfaaea1", 1200),
-  express: img("photo-1517677208171-0bc6725a3e60", 1200),
-  "open-daily": img("photo-1556905055-8f358a7a47b2", 1200),
+  "personal-laundry": img("photo-1582735689369-4fe89db7114c", 1200),
+  "dry-cleaning": img("photo-1594938298603-c8148c4dae35", 1200),
+  "shoes-and-bags": "/services/shoes-and-bags.png?v=2",
+  "commercial-laundry": img("photo-1604335399105-a0c585fd81a1", 1200),
+  "hand-washing": "/services/hand-washing.png?v=2",
+  "pickup-delivery": "/services/pickup-delivery.png?v=2",
+  "self-service": img("photo-1545173168-9f1947eebb7f", 1200),
+  express: "/services/express.png?v=2",
+  "open-daily": "/services/open-daily.png?v=2",
+};
+
+export const servicePhotoPosition = {
+  "personal-laundry": "center 82%",
+  "dry-cleaning": "center 32%",
+  "shoes-and-bags": "center",
+  "commercial-laundry": "center",
+  "hand-washing": "center",
+  "pickup-delivery": "center 12%",
+  "self-service": "center",
+  express: "58% center",
+  "open-daily": "center 64%",
+};
+
+export const servicePhotoSize = {
+  "personal-laundry": "155%",
 };
 
 export const pagePhotos = {
@@ -81,26 +97,31 @@ export const pagePhotos = {
 
 export const slides = [
   {
-    image: img("photo-1517677208171-0bc6725a3e60"),
-    kicker: "Mandaue · Cebu City",
+    image: "/branches/sm-seaside/hero.jpg",
+    position: "80% 32%",
+    kicker: "SM Seaside · Cebu City",
     title: "Not just another laundry shop.",
     text: "Full service, self-service, and pick-up that actually comes back clean.",
   },
   {
-    image: img("photo-1545173168-9f1947eebb7f"),
+    image: img("photo-1517677208171-0bc6725a3e60", 1800),
+    position: "center 46%",
     kicker: "Wash · Dry · Fold",
     title: "Smooth results. On time.",
     text: "Regular loads are usually ready in 24–48 hours. Express is about 4 hours.",
   },
   {
-    image: img("photo-1604335399105-a0c585fd81a1"),
-    kicker: "Cabancalan · Banilad",
+    image:
+      "https://images.pexels.com/photos/4700611/pexels-photo-4700611.jpeg?auto=compress&cs=tinysrgb&w=1800",
+    position: "center",
+    kicker: "Self-service",
     title: "Self-service, when you want the machines.",
     text: "Run your own wash at Cabancalan and Banilad, or hand it to the staff.",
   },
   {
-    image: img("photo-1617347454431-f49d7ff5c3b1"),
-    kicker: "Metro Cebu",
+    image: img("photo-1617347454431-f49d7ff5c3b1", 1800),
+    position: "center 48%",
+    kicker: "Pick-up · Delivery",
     title: "We pick up. We deliver.",
     text: "From Mandaue and Cebu City out to Lapu-Lapu, Consolacion, Liloan, Cordova, and Talisay.",
   },
@@ -244,6 +265,7 @@ export const branches = [
     city: "Mandaue City",
     kind: "Full service",
     image: shopPhoto("cabancalan", "hero.jpg"),
+    imagePosition: "78% 34%",
     servicesImage: shopPhoto("cabancalan", "services.png"),
     techImage: shopPhoto("cabancalan", "tech.jpg"),
     tagline: "The easiest drop you'll ever make.",
@@ -265,6 +287,7 @@ export const branches = [
     city: "Mandaue City",
     kind: "Self-service",
     image: shopPhoto("cabancalan-self-service", "hero.jpg"),
+    imagePosition: "60% 46%",
     servicesImage: shopPhoto("cabancalan-self-service", "services.jpg"),
     techImage: shopPhoto("cabancalan-self-service", "tech.jpg"),
     tagline: "Self-service at the Cabancalan shop.",
@@ -284,6 +307,7 @@ export const branches = [
     city: "Mandaue City",
     kind: "Full service",
     image: shopPhoto("banilad", "hero.jpg"),
+    imagePosition: "24% 40%",
     servicesImage: shopPhoto("banilad", "services.jpg"),
     techImage: shopPhoto("banilad", "tech.jpg"),
     tagline: "Where your laundry gets a professional wash.",
@@ -304,6 +328,7 @@ export const branches = [
     city: "Mandaue City",
     kind: "Self-service",
     image: shopPhoto("banilad-self-service", "hero.jpg"),
+    imagePosition: "60% 48%",
     servicesImage: shopPhoto("banilad-self-service", "services.jpg"),
     techImage: shopPhoto("banilad-self-service", "tech.jpg"),
     tagline: "Wash and fold, or the machines you run yourself.",
@@ -322,6 +347,7 @@ export const branches = [
     city: "Cebu City",
     kind: "Full service",
     image: shopPhoto("lahug", "hero.jpg"),
+    imagePosition: "center 40%",
     servicesImage: shopPhoto("lahug", "services.jpg"),
     techImage: shopPhoto("lahug", "tech.jpg"),
     tagline: "Ground floor of ABC Plus Hotel & Homes on Salinas Drive.",
@@ -340,6 +366,7 @@ export const branches = [
     city: "Mandaue City",
     kind: "Full service",
     image: shopPhoto("maguikay", "hero.jpg"),
+    imagePosition: "center 42%",
     servicesImage: shopPhoto("maguikay", "services.jpg"),
     techImage: shopPhoto("maguikay", "tech.jpg"),
     tagline: "The easiest drop you'll ever make.",
@@ -358,6 +385,7 @@ export const branches = [
     city: "Cebu City",
     kind: "Full service",
     image: shopPhoto("sm-seaside", "hero.jpg"),
+    imagePosition: "70% 38%",
     servicesImage: shopPhoto("sm-seaside", "services.jpg"),
     techImage: shopPhoto("sm-seaside", "tech.jpg"),
     tagline: "Let us take the stress out of laundry day.",
@@ -579,12 +607,12 @@ export const storyMedia = {
 };
 
 export const gallery = [
-  img("photo-1517677208171-0bc6725a3e60", 900),
-  img("photo-1610557892470-55d9e80c0bce", 900),
-  img("photo-1489274495757-95c7c837b101", 900),
-  img("photo-1582735689369-4fe89db7114c", 900),
-  img("photo-1626806787461-102c1bfaaea1", 900),
-  img("photo-1556905055-8f358a7a47b2", 900),
+  "/branches/sm-seaside/hero.jpg",
+  "/branches/lahug/hero.jpg",
+  "/branches/banilad/tech.jpg",
+  "/branches/cabancalan-self-service/hero.jpg",
+  "/pickup/delivery.jpg",
+  "/who/professional.jpg",
 ];
 
 export function telHref(display) {

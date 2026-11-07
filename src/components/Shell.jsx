@@ -39,6 +39,28 @@ export default function Shell() {
     };
   }, [menu, franchiseOpen]);
 
+  useEffect(() => {
+    if (!menu) return undefined;
+    const place = () => {
+      const header = document.querySelector(".site-header");
+      if (!header) return;
+      const bottom = Math.ceil(header.getBoundingClientRect().bottom);
+      document.documentElement.style.setProperty("--drawer-top", `${bottom}px`);
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [menu]);
+
+  const toggleMenu = () => {
+    const header = document.querySelector(".site-header");
+    if (header) {
+      const bottom = Math.ceil(header.getBoundingClientRect().bottom);
+      document.documentElement.style.setProperty("--drawer-top", `${bottom}px`);
+    }
+    setMenu((open) => !open);
+  };
+
   const closeFranchise = () => {
     sessionStorage.setItem("dropshot-franchise", "1");
     setFranchiseOpen(false);
@@ -102,7 +124,7 @@ export default function Shell() {
             type="button"
             aria-expanded={menu}
             aria-label={menu ? "Close menu" : "Open menu"}
-            onClick={() => setMenu((v) => !v)}
+            onClick={toggleMenu}
           >
             <span />
             <span />
@@ -113,22 +135,26 @@ export default function Shell() {
 
       {menu && (
         <div className="drawer">
-          <Link to="/">Home</Link>
-          <Link to="/pickup">Pick-Up Delivery</Link>
-          <p>Branches</p>
-          {branches.map((branch) => (
-            <Link key={branch.slug} className="sub" to={`/branches/${branch.slug}`}>
-              {branch.short}
-            </Link>
-          ))}
-          <Link to="/franchise">Franchise</Link>
-          <p>About Us</p>
-          {about.map((item) => (
-            <Link key={item.to} className="sub" to={item.to}>
-              {item.label}
-            </Link>
-          ))}
-          <Link to="/reviews">Reviews</Link>
+          <div className="drawer-col">
+            <Link to="/">Home</Link>
+            <Link to="/pickup">Pick-Up Delivery</Link>
+            <Link to="/franchise">Franchise</Link>
+            <Link to="/reviews">Reviews</Link>
+            <p>About Us</p>
+            {about.map((item) => (
+              <Link key={item.to} className="sub" to={item.to}>
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="drawer-col">
+            <p>Branches</p>
+            {branches.map((branch) => (
+              <Link key={branch.slug} className="sub" to={`/branches/${branch.slug}`}>
+                {branch.short}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
 

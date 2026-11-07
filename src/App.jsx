@@ -18,8 +18,19 @@ import NotFound from "./pages/NotFound";
 export default function App() {
   const location = useLocation();
   useEffect(() => {
+    const fromPath = location.pathname.startsWith("/services/")
+      ? location.pathname.slice("/services/".length)
+      : "";
+    const id = location.hash ? decodeURIComponent(location.hash.slice(1)) : fromPath;
+    if (id) {
+      const node = document.getElementById(id);
+      if (node) {
+        node.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return (
     <Routes>

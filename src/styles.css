@@ -175,16 +175,19 @@ p { margin: 0 0 0.8em; }
 .drawer {
   position: fixed;
   inset: 0;
-  top: 0;
   background: var(--paper-2);
   z-index: 25;
   overflow: auto;
-  padding: 6.5rem 1.4rem 6rem;
+  top: var(--drawer-top, 8.5rem);
+  padding: 0.85rem 1.4rem 6rem;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: start;
-  gap: 0.35rem;
+  gap: 1.4rem;
 }
+.drawer-col { display: grid; align-content: start; gap: 0.1rem; min-width: 0; }
 .drawer a, .drawer p { margin: 0; color: var(--ink); text-decoration: none; font-size: 1.15rem; font-weight: 600; }
+.drawer a { display: block; padding: 0.55rem 0.15rem; }
 .drawer .sub { padding-left: 0.8rem; color: var(--muted); font-size: 1rem; font-weight: 500; }
 .drawer p {
   margin-top: 0.8rem;
@@ -193,6 +196,14 @@ p { margin: 0 0 0.8em; }
   text-transform: uppercase;
   font-size: 0.78rem;
   color: var(--teal);
+}
+@media (min-width: 640px) {
+  .drawer {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.5rem 3rem;
+    padding-left: max(1.5rem, calc((100% - 820px) / 2));
+    padding-right: max(1.5rem, calc((100% - 820px) / 2));
+  }
 }
 
 .hero {
@@ -444,7 +455,7 @@ p { margin: 0 0 0.8em; }
   display: block;
   width: calc(100% + 2.8rem);
   max-width: none;
-  height: 156px;
+  height: 220px;
   object-fit: cover;
   margin: -1.35rem -1.35rem 0.95rem -1.45rem;
 }
@@ -483,7 +494,7 @@ p { margin: 0 0 0.8em; }
 .text-link:hover { color: var(--red); }
 
 .band {
-  background: #16343b url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1600&q=70") center/cover;
+  background: #16343b url("/branches/sm-seaside/hero.jpg") center 40%/cover;
   color: #fff;
   position: relative;
 }
@@ -1004,14 +1015,21 @@ input:focus, textarea:focus, select:focus {
 .cookie-actions .btn { flex: 1; }
 .callbar { display: none; }
 
+@media (max-width: 1100px) {
+  .nav-left, .nav-right { gap: 0.7rem; }
+  .nav-left a, .nav-right a, .drop > button { font-size: 0.88rem; }
+}
 @media (max-width: 980px) {
-  .nav-left, .nav-right { display: none; }
-  .burger { display: block; }
-  .nav-wrap { grid-template-columns: 1fr auto; }
   .service-grid, .client-grid, .rules, .cards-3 { grid-template-columns: 1fr 1fr; }
   .split, .footer-grid, .branch-grid, .story-layout, .service-list article.service-row, .place { grid-template-columns: 1fr; }
   .place iframe { height: 220px; }
   .story-photos { position: static; grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 860px) {
+  .nav-left, .nav-right { display: none; }
+  .burger { display: block; grid-column: 3; }
+  .nav-wrap { grid-template-columns: 42px minmax(0, 1fr) 42px; }
+  .nav-wrap > .logo { grid-column: 2; justify-self: center; }
 }
 @media (max-width: 680px) {
   .service-grid, .client-grid, .gallery, .rules, .cards-3, .story-photos, .who-grid, .directory, .review-grid, .video-row { grid-template-columns: 1fr; }

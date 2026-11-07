@@ -2,7 +2,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
 import { useTitle } from "../components/Shell";
-import { brand, branches, clients, gallery, servicePhotos, services, telHref } from "../data";
+import {
+  brand,
+  branches,
+  clients,
+  gallery,
+  servicePhotoPosition,
+  servicePhotoSize,
+  servicePhotos,
+  services,
+  telHref,
+} from "../data";
 
 export default function Home() {
   useTitle("");
@@ -28,12 +38,15 @@ export default function Home() {
               <figure key={service.slug} className="service-figure">
                 <Link
                   className="service-card"
-                  to={service.href || `/services/${service.slug}`}
-                  style={{ backgroundImage: `url(${servicePhotos[service.slug]})` }}
+                  to={`/services#${service.slug}`}
+                  style={{
+                    backgroundImage: `url(${servicePhotos[service.slug]})`,
+                    backgroundPosition: servicePhotoPosition[service.slug] || "center",
+                    backgroundSize: servicePhotoSize[service.slug] || "cover",
+                  }}
                 >
                   <span>{service.name}</span>
                 </Link>
-                <figcaption>{service.name}</figcaption>
               </figure>
             ))}
           </div>
@@ -59,7 +72,12 @@ export default function Home() {
           <div className="branch-grid">
             {branches.map((branch) => (
               <article key={branch.slug} className="branch-card">
-                <img className="branch-shot" src={branch.image} alt="" />
+                <img
+                  className="branch-shot"
+                  src={branch.image}
+                  alt=""
+                  style={{ objectPosition: branch.imagePosition || "center 38%" }}
+                />
                 <p className="kind">{branch.kind}</p>
                 <h3>✦ {branch.name} ✦</h3>
                 <p>{branch.tagline}</p>
@@ -98,7 +116,7 @@ export default function Home() {
         <div className="wrap">
           <p className="kicker">Service gallery</p>
           <h2 className="section-title">Wash, press, fold</h2>
-          <p className="note">Photos show the kind of work. They are not pictures of a specific branch.</p>
+          <p className="note">Photos from the shops.</p>
           <div className="gallery">
             {gallery.map((src, index) => (
               <button key={src} type="button" onClick={() => setPhoto(index)} aria-label={`Open photo ${index + 1}`}>
