@@ -26,7 +26,13 @@ export default function Branch() {
 
   return (
     <>
-      <PageHero kicker={branch.city} title={branch.name} text={branch.tagline} image={branch.image} />
+      <PageHero
+        kicker={branch.city}
+        title={branch.name}
+        text={branch.tagline}
+        image={branch.image}
+        position={branch.heroPosition}
+      />
       <section className="section">
         <div className="wrap service-list">
           <article className="service-row">

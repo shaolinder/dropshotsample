@@ -283,10 +283,17 @@ function Drop({ label, open, onToggle, children }) {
   );
 }
 
-export function PageHero({ kicker, title, text, image }) {
+export function PageHero({ kicker, title, text, image, position }) {
   return (
-    <section className="page-hero">
-      {image && <img className="page-hero-photo" src={image} alt="" />}
+    <section className={position ? "page-hero page-hero-sign" : "page-hero"}>
+      {image && (
+        <img
+          className="page-hero-photo"
+          src={image}
+          alt=""
+          style={position ? { objectPosition: position } : undefined}
+        />
+      )}
       <div className="page-hero-shade" />
       <div className="wrap">
         {kicker && <p className="kicker light">{kicker}</p>}

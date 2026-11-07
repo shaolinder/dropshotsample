@@ -542,6 +542,7 @@ p { margin: 0 0 0.8em; }
     #16343b center/cover;
   color: #fff;
 }
+.page-hero-sign { min-height: clamp(360px, 34vw, 620px); }
 .page-hero-photo {
   position: absolute;
   inset: 0;
