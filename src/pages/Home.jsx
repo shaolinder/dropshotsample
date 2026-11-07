@@ -72,6 +72,11 @@ export default function Home() {
           <div className="branch-grid">
             {branches.map((branch) => (
               <article key={branch.slug} className="branch-card">
+                <Link
+                  className="card-hit"
+                  to={`/branches/${branch.slug}`}
+                  aria-label={`${branch.name} branch details`}
+                />
                 <img
                   className="branch-shot"
                   src={branch.image}
@@ -89,9 +94,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Link className="text-link" to={`/branches/${branch.slug}`}>
-                  Branch details
-                </Link>
+                <span className="text-link">Branch details</span>
               </article>
             ))}
           </div>
